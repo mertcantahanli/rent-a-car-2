@@ -8,11 +8,11 @@ pipeline {
                 checkout scm
             }
         }
-        
+       
         stage('Build') {
             steps {
                 // Maven kullanarak projeyi derleme adımları
-                sh 'mvnw clean package'
+                sh './mvnw clean package'
             }
         }
         
