@@ -1,35 +1,32 @@
 pipeline {
-    agent { 
-        node {
-            label 'jenkins-agent-goes-here'
-            }
-      }
-    triggers {
-        pollSCM '* * * * *'
-    }
+    agent any
+    
     stages {
+        stage('Checkout') {
+            steps {
+                // Kod deposundan projeyi çekmek için kullanılan adımlar
+                checkout scm
+            }
+        }
+        
         stage('Build') {
             steps {
-                echo "Building.."
-                sh '''
-                echo "doing build stuff.."
-                '''
+                // Maven kullanarak projeyi derleme adımları
+                sh 'mvn clean package'
             }
         }
+        
         stage('Test') {
             steps {
-                echo "Testing.."
-                sh '''
-                echo "doing test stuff..
-                '''
+                // Test adımları
+                sh 'mvn test'
             }
         }
-        stage('Deliver') {
+        
+        stage('Deploy') {
             steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                // Uygulamayı dağıtma adımları
+                sh 'mvn spring-boot:run'
             }
         }
     }
