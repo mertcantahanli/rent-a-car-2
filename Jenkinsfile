@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Uygulamayı dağıtma adımları
-                sh './mvnw spring-boot:run'
+                sh 'mvn spring-boot:run'
             }
         }
     }
