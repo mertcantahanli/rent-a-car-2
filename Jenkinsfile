@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+   agent {
+        docker {
+            image 'my-jenkins-with-maven:latest'
+            args '-v /path/to/your/maven/project:/app'
+        }
 
     stages {
         stage('Checkout') {
