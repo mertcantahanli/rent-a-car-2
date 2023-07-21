@@ -19,14 +19,14 @@ pipeline {
         stage('Test') {
             steps {
                 // Test adımları
-                sh 'mvn test'
+                sh './mvnw wrapper:wrapper'
             }
         }
         
         stage('Deploy') {
             steps {
                 // Uygulamayı dağıtma adımları
-                sh 'mvn spring-boot:run'
+                sh './mvnw spring-boot:run'
             }
         }
     }
