@@ -32,10 +32,9 @@ pipeline {
     }
     post {
         failure {
-           def consoleLogOutput = sh(script: 'ls -la', returnStdout: true)
            mail to: 'mertcantahanli@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL} ${consoleLogOutput}"
+             body: "Something is wrong with ${env.BUILD_URL} ${currentBuild.consoleLogOutput}"
         }
     }
 
